@@ -1,0 +1,8 @@
+version: 2
+tpsheetFileNames:
+- Assets/2Simple 2D Platformer BE2/1codeandweb.com/Example/SpriteSheet/sprites.tpsheet
+textureFileNames:
+- Assets/2Simple 2D Platformer BE2/1codeandweb.com/Example/SpriteSheet/sprites.png
+normalmapFileNames:
+- Assets/2Simple 2D Platformer BE2/1codeandweb.com/Example/SpriteSheet/sprites_n.png
+enableDebugOutput: 0
