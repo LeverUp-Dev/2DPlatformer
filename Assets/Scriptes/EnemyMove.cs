@@ -7,6 +7,8 @@ public class EnemyMove : MonoBehaviour
     Rigidbody2D rigid;
     Animator anim;
     SpriteRenderer spriteRenderer;
+    BoxCollider2D boxCollider;
+
     public int nextMove;
     
     void Awake()
@@ -14,6 +16,7 @@ public class EnemyMove : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        boxCollider = GetComponent<BoxCollider2D>();
         //함수 실행에 딜레이를 줌
         Invoke("Think", 3);
     }
@@ -57,5 +60,24 @@ public class EnemyMove : MonoBehaviour
         //recursive
         float nextThinkTime = Random.Range(2f, 5f);
         Invoke("Think", nextThinkTime);
+    }
+
+    public void OnDamaged()
+    {
+        //sprite alpha - 색 변경
+        spriteRenderer.color = new Color(1, 1, 1, 0.4f);
+        //sprite flip y - 뒤집기
+        spriteRenderer.flipY = true;
+        //collider disable - 물리충돌 해제
+        boxCollider.enabled = false;
+        //die effect jump - 죽을 시 점프효과
+        rigid.AddForce(Vector2.up * 5, ForceMode2D.Impulse);
+        //destroy - 삭제
+        Invoke("DeActive", 5);
+    }
+
+    void DeActive()
+    {
+        gameObject.SetActive(false);
     }
 }
